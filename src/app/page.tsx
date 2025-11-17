@@ -3,159 +3,221 @@
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Chat from "@/components/chat";
 import { Button } from "@/components/ui/button";
-import {
-  CheckCircle,
-  Zap,
-  Database,
-  Shield,
-  ExternalLink,
-} from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { CheckCircle, Zap, Database, Shield, ArrowRight, Sparkles } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
-import Image from "next/image";
+import Link from "next/link";
+import { CreditBalance } from "@/components/shared/credit-balance";
 
 export default function Home() {
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      {/* Hero Section */}
-      <div className="text-center py-12 sm:py-16 relative px-4">
-        <div className="absolute top-4 right-4 sm:top-6 sm:right-6">
-          <div className="flex items-center gap-2 sm:gap-3">
-            <ThemeToggle />
+    <div className="min-h-screen bg-background">
+      {/* Navigation - Consistent with Dashboard */}
+      <header className="border-b">
+        <div className="container flex h-16 items-center justify-between px-4">
+          <div className="flex items-center gap-8">
+            <Link href="/" className="text-xl font-bold">
+              AI Generator
+            </Link>
+            <nav className="hidden md:flex items-center gap-6 text-sm">
+              <Link href="/dashboard" className="font-medium">
+                Dashboard
+              </Link>
+            </nav>
+          </div>
+          <div className="flex items-center gap-4">
+            <SignedIn>
+              <CreditBalance />
+              <Link href="/dashboard">
+                <Button variant="outline" size="sm" className="hidden sm:flex items-center gap-2">
+                  <Sparkles className="w-4 h-4" />
+                  Dashboard
+                </Button>
+                <Button variant="outline" size="sm" className="sm:hidden" title="Dashboard">
+                  <Sparkles className="w-4 h-4" />
+                </Button>
+              </Link>
+            </SignedIn>
+
             <SignedOut>
               <SignInButton>
-                <Button size="sm" className="text-xs sm:text-sm">
+                <Button size="sm">
                   Sign In
                 </Button>
               </SignInButton>
             </SignedOut>
+
             <SignedIn>
               <UserButton />
             </SignedIn>
+
+            <ThemeToggle />
           </div>
         </div>
+      </header>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-4">
-          <Image
-            src="/codeguide-logo.png"
-            alt="CodeGuide Logo"
-            width={50}
-            height={50}
-            className="rounded-xl sm:w-[60px] sm:h-[60px]"
-          />
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-transparent">
-            CodeGuide Starter
+      {/* Hero Section */}
+      <div className="text-center py-16 px-4">
+        <div className="max-w-3xl mx-auto">
+          <Badge variant="outline" className="mb-6">
+            <Sparkles className="w-3 h-3 mr-1" />
+            AI Content Generator
+          </Badge>
+
+          <h1 className="text-4xl sm:text-5xl font-bold mb-6">
+            Generate Content with AI
           </h1>
+
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+            Create high-quality content using advanced AI technology. Perfect for writers, marketers, and content creators.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+            <SignedIn>
+              <Link href="/dashboard">
+                <Button size="lg" className="px-8 py-6 text-lg">
+                  <Sparkles className="w-5 h-5 mr-2" />
+                  Go to Dashboard
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </Link>
+            </SignedIn>
+
+            <SignedOut>
+              <SignInButton>
+                <Button size="lg" className="px-8 py-6 text-lg">
+                  Get Started
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </SignInButton>
+            </SignedOut>
+          </div>
         </div>
-        <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
-          Build faster with your AI coding agent
-        </p>
       </div>
 
-      <main className="container mx-auto px-4 sm:px-6 pb-12 sm:pb-8 max-w-5xl">
-        <div className="text-center mb-8">
-          <div className="text-4xl sm:text-5xl mb-2">⚠️</div>
-          <div className="font-bold text-lg sm:text-xl mb-1">Setup Required</div>
-          <div className="text-sm sm:text-base text-muted-foreground">
-            Add environment variables to get started
-          </div>
+      {/* Features Section */}
+      <section className="container mx-auto px-4 sm:px-6 py-8 max-w-5xl">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4">Powerful AI Features</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Generate high-quality content with our advanced AI-powered platform designed for creators and professionals.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
-          {/* Clerk */}
-          <div className="text-center p-3 sm:p-4 rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/10 dark:to-indigo-900/10">
-            <div className="flex justify-center mb-3">
-              <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-blue-500" />
-            </div>
-            <div className="font-semibold mb-2 text-sm sm:text-base">
-              Clerk Auth
-            </div>
-            <div className="text-xs text-muted-foreground mb-2">
-              <div className="font-mono bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded mb-1">NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY</div>
-              <div className="font-mono bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded">CLERK_SECRET_KEY</div>
-            </div>
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={() =>
-                window.open("https://dashboard.clerk.com", "_blank")
-              }
-              className="w-full text-xs sm:text-sm"
-            >
-              <ExternalLink className="w-3 h-3 mr-1" />
-              Dashboard
-            </Button>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <Card>
+            <CardHeader>
+              <div className="flex items-center gap-3 mb-2">
+                <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900/30">
+                  <Zap className="w-6 h-6 text-blue-500" />
+                </div>
+                <CardTitle>Fast Generation</CardTitle>
+              </div>
+              <CardDescription>
+                Quick content generation with AI
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <span>Lightning fast responses</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <span>Multiple content types</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <span>High-quality output</span>
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
 
-          {/* Supabase */}
-          <div className="text-center p-3 sm:p-4 rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/10 dark:to-emerald-900/10">
-            <div className="flex justify-center mb-3">
-              <Database className="w-6 h-6 sm:w-8 sm:h-8 text-green-500" />
-            </div>
-            <div className="font-semibold mb-2 text-sm sm:text-base">
-              Supabase DB
-            </div>
-            <div className="text-xs text-muted-foreground mb-2">
-              <div className="font-mono bg-green-100 dark:bg-green-800 px-2 py-1 rounded mb-1">NEXT_PUBLIC_SUPABASE_URL</div>
-              <div className="font-mono bg-green-100 dark:bg-green-800 px-2 py-1 rounded">NEXT_PUBLIC_SUPABASE_ANON_KEY</div>
-            </div>
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={() =>
-                window.open("https://supabase.com/dashboard", "_blank")
-              }
-              className="w-full text-xs sm:text-sm"
-            >
-              <ExternalLink className="w-3 h-3 mr-1" />
-              Dashboard
-            </Button>
-          </div>
+          <Card>
+            <CardHeader>
+              <div className="flex items-center gap-3 mb-2">
+                <div className="p-2 rounded-lg bg-green-100 dark:bg-green-900/30">
+                  <Shield className="w-6 h-6 text-green-500" />
+                </div>
+                <CardTitle>Secure & Private</CardTitle>
+              </div>
+              <CardDescription>
+                Your data is protected and secure
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <span>Encrypted connections</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <span>Private history</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <span>Secure authentication</span>
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
 
-          {/* AI */}
-          <div className="text-center p-3 sm:p-4 rounded-lg bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/10 dark:to-pink-900/10 sm:col-span-2 md:col-span-1">
-            <div className="flex justify-center mb-3">
-              <Zap className="w-6 h-6 sm:w-8 sm:h-8 text-purple-500" />
-            </div>
-            <div className="font-semibold mb-2 text-sm sm:text-base">
-              AI SDK
-            </div>
-            <div className="text-xs text-muted-foreground mb-2">
-              <div className="font-mono bg-purple-100 dark:bg-purple-800 px-2 py-1 rounded mb-1">OPENAI_API_KEY</div>
-              <div className="font-mono bg-purple-100 dark:bg-purple-800 px-2 py-1 rounded">ANTHROPIC_API_KEY</div>
-            </div>
-            <div className="grid grid-cols-2 gap-1 sm:gap-2">
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={() =>
-                  window.open("https://platform.openai.com", "_blank")
-                }
-                className="text-xs px-1 sm:px-2"
-              >
-                OpenAI
-              </Button>
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={() =>
-                  window.open("https://console.anthropic.com", "_blank")
-                }
-                className="text-xs px-1 sm:px-2"
-              >
-                Anthropic
-              </Button>
-            </div>
-          </div>
+          <Card>
+            <CardHeader>
+              <div className="flex items-center gap-3 mb-2">
+                <div className="p-2 rounded-lg bg-purple-100 dark:bg-purple-900/30">
+                  <Database className="w-6 h-6 text-purple-500" />
+                </div>
+                <CardTitle>Credit System</CardTitle>
+              </div>
+              <CardDescription>
+                Flexible usage-based pricing
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <span>Pay-per-use credits</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <span>Usage tracking</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <span>No monthly commitments</span>
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
         </div>
+      </section>
 
-        {/* Chat Section */}
-        <SignedIn>
-          <div className="mt-6 sm:mt-8">
-            <Chat />
-          </div>
-        </SignedIn>
-      </main>
+
+      {/* Chat Section - Only for signed in users */}
+      <SignedIn>
+        <section className="container mx-auto px-4 sm:px-6 pb-12 max-w-5xl">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Zap className="w-5 h-5" />
+                AI Assistant
+              </CardTitle>
+              <CardDescription>
+                Chat with your AI coding assistant to generate code, debug, and learn
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Chat />
+            </CardContent>
+          </Card>
+        </section>
+      </SignedIn>
     </div>
   );
 }

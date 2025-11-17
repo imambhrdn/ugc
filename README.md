@@ -1,185 +1,178 @@
-[![CodeGuide](/codeguide-backdrop.svg)](https://codeguide.dev)
+# AI Content Generation Platform
 
-# CodeGuide Starter Kit
-
-A modern web application starter template built with Next.js 15, featuring authentication, database integration, AI capabilities, and dark mode support.
-
-## Tech Stack
-
-- **Framework:** [Next.js 15](https://nextjs.org/) (App Router)
-- **Language:** TypeScript
-- **Authentication:** [Clerk](https://clerk.com/)
-- **Database:** [Supabase](https://supabase.com/)
-- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
-- **UI Components:** [shadcn/ui](https://ui.shadcn.com/)
-- **AI Integration:** [Vercel AI SDK](https://sdk.vercel.ai/)
-- **Theme System:** [next-themes](https://github.com/pacocoursey/next-themes)
-
-## Prerequisites
-
-Before you begin, ensure you have the following:
-- Node.js 18+ installed
-- A [Clerk](https://clerk.com/) account for authentication
-- A [Supabase](https://supabase.com/) account for database
-- Optional: [OpenAI](https://platform.openai.com/) or [Anthropic](https://console.anthropic.com/) API key for AI features
-- Generated project documents from [CodeGuide](https://codeguide.dev/) for best development experience
-
-## Getting Started
-
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd codeguide-starter-kit
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   # or
-   yarn install
-   # or
-   pnpm install
-   ```
-
-3. **Environment Variables Setup**
-   - Copy the `.env.example` file to `.env.local`:
-     ```bash
-     cp .env.example .env.local
-     ```
-   - Fill in the environment variables in `.env.local` (see Configuration section below)
-
-4. **Start the development server**
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   # or
-   pnpm dev
-   ```
-
-5. **Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.**
-
-The homepage includes a setup dashboard with direct links to configure each service.
-
-## Configuration
-
-### Clerk Setup
-1. Go to [Clerk Dashboard](https://dashboard.clerk.com/)
-2. Create a new application
-3. Go to API Keys
-4. Copy the `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and `CLERK_SECRET_KEY`
-
-### Supabase Setup
-1. Go to [Supabase Dashboard](https://supabase.com/dashboard)
-2. Create a new project
-3. Go to Authentication → Integrations → Add Clerk (for third-party auth)
-4. Go to Project Settings > API
-5. Copy the `Project URL` as `NEXT_PUBLIC_SUPABASE_URL`
-6. Copy the `anon` public key as `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-
-### AI Integration Setup (Optional)
-1. Go to [OpenAI Platform](https://platform.openai.com/) or [Anthropic Console](https://console.anthropic.com/)
-2. Create an API key
-3. Add to your environment variables
-
-## Environment Variables
-
-Create a `.env.local` file in the root directory with the following variables:
-
-```env
-# Clerk Authentication
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_publishable_key
-CLERK_SECRET_KEY=your_secret_key
-
-# Supabase
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-
-# AI Integration (Optional)
-OPENAI_API_KEY=your_openai_api_key
-ANTHROPIC_API_KEY=your_anthropic_api_key
-```
+A modern Next.js application for generating AI content (text, images, and videos) with credit-based usage system, built with TypeScript, Clerk authentication, and Supabase database.
 
 ## Features
 
-- 🔐 Authentication with Clerk (middleware protection)
-- 🗄️ Supabase Database with third-party auth integration
-- 🤖 AI Chat Interface with OpenAI/Anthropic support
-- 🎨 40+ shadcn/ui components (New York style)
-- 🌙 Dark mode with system preference detection
-- 🎯 Built-in setup dashboard with service status
-- 🚀 App Router with Server Components
-- 🔒 Row Level Security examples with Clerk user IDs
-- 📱 Responsive design with TailwindCSS v4
-- 🎨 Custom fonts (Geist Sans, Geist Mono, Parkinsans)
+- **AI Generation**: Generate text, images, and videos using external AI APIs
+- **Credit System**: Users have a credit balance that gets deducted with each generation
+- **User Authentication**: Secure authentication with Clerk
+- **History Tracking**: View and manage your generation history
+- **Real-time Status**: Asynchronous processing with polling for job status
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
+
+## Tech Stack
+
+- **Framework**: Next.js (App Router)
+- **Authentication**: Clerk
+- **Database**: Supabase (PostgreSQL)
+- **UI Components**: shadcn/ui
+- **Styling**: Tailwind CSS
+- **APIs**: Kie.ai for AI processing
+- **Deployment**: Vercel
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd <repository-name>
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Copy the environment file and add your credentials:
+   ```bash
+   cp .env.example .env.local
+   ```
+   
+   Then update the following variables in the `.env.local` file:
+   - `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` - Your Clerk publishable key
+   - `CLERK_SECRET_KEY` - Your Clerk secret key
+   - `NEXT_PUBLIC_SUPABASE_URL` - Your Supabase project URL
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Your Supabase anon key
+   - `SUPABASE_SERVICE_KEY` - Your Supabase service role key
+   - `KIE_API_KEY` - Your Kie.ai API key
+   - `CLERK_WEBHOOK_SECRET` - Your Clerk webhook secret
+   - `LOGGING_ENABLED` - Enable/disable logging (default: true)
+   - `LOGGING_LEVEL` - Log level (debug, info, warn, error) (default: info)
+   - `EXTERNAL_LOGGING_ENABLED` - Enable external logging (default: false)
+   - `LOGGING_WEBHOOK_URL` - Webhook URL for external logging
+   - `SENTRY_DSN` - Sentry DSN for error tracking (optional)
+   - `LOGROCKET_APP_ID` - LogRocket App ID for session recording (optional)
+
+4. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## Database Schema Setup
+
+Run these SQL commands in your Supabase SQL editor to set up the required tables:
+
+```sql
+-- Create custom ENUM types
+CREATE TYPE public.generation_type AS ENUM ('text_to_prompt', 'image', 'video');
+CREATE TYPE public.job_status AS ENUM ('pending', 'processing', 'completed', 'failed');
+
+-- Create profiles table
+CREATE TABLE public.profiles (
+    clerk_id TEXT NOT NULL PRIMARY KEY,
+    email TEXT,
+    credits INTEGER DEFAULT 20,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Create generations table
+CREATE TABLE public.generations (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id TEXT NOT NULL REFERENCES public.profiles(clerk_id) ON DELETE CASCADE,
+    prompt TEXT NOT NULL,
+    type public.generation_type NOT NULL,
+    status public.job_status NOT NULL DEFAULT 'pending',
+    job_id_external TEXT,
+    result_url TEXT,
+    error_message TEXT,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Create index for faster queries
+CREATE INDEX idx_generations_user_id ON public.generations(user_id);
+
+-- Ensure Row Level Security is disabled for these tables or properly configured
+ALTER TABLE profiles DISABLE ROW LEVEL SECURITY;
+ALTER TABLE generations DISABLE ROW LEVEL SECURITY;
+```
+
+## Deployment
+
+### Vercel (Recommended)
+
+The easiest way to deploy this application is to use Vercel:
+
+1. Push your code to a GitHub repository
+2. Go to [Vercel](https://vercel.com) and sign in
+3. Import your GitHub repository
+4. Vercel will automatically detect it's a Next.js app and configure the build settings
+5. Add your environment variables in the Vercel dashboard:
+   - `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`
+   - `CLERK_SECRET_KEY`
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `SUPABASE_SERVICE_KEY`
+   - `KIE_API_KEY`
+   - `CLERK_WEBHOOK_SECRET`
+6. Deploy!
+
+### Webhook Configuration
+
+After deploying, you need to configure Clerk webhooks to point to your deployed URL:
+- Go to your Clerk Dashboard
+- Navigate to Webhooks
+- Add a new webhook with the URL: `https://<your-domain>/api/webhooks/clerk`
+- Select the event: `user.created`
+- Copy the webhook signing secret to your `CLERK_WEBHOOK_SECRET` environment variable
+
+## API Endpoints
+
+- `POST /api/generate` - Start a new AI generation job
+- `GET /api/status/[jobId]` - Check the status of a generation job
+- `POST /api/webhooks/clerk` - Handle Clerk user creation events
 
 ## Project Structure
 
 ```
-codeguide-starter-kit/
-├── src/
-│   ├── app/                    # Next.js app router pages
-│   │   ├── api/chat/          # AI chat API endpoint
-│   │   ├── globals.css        # Global styles with dark mode
-│   │   ├── layout.tsx         # Root layout with providers
-│   │   └── page.tsx           # Hero + setup dashboard
-│   ├── components/            # React components
-│   │   ├── ui/                # shadcn/ui components (40+)
-│   │   ├── chat.tsx           # AI chat interface
-│   │   ├── theme-provider.tsx # Theme context
-│   │   └── theme-toggle.tsx   # Dark mode toggle
-│   ├── lib/                   # Utility functions
-│   │   ├── supabase.ts        # Supabase client with Clerk auth
-│   │   ├── user.ts            # User utilities
-│   │   ├── utils.ts           # General utilities
-│   │   └── env-check.ts       # Environment validation
-│   └── middleware.ts          # Clerk route protection
-├── supabase/
-│   └── migrations/            # Database migrations with RLS examples
-├── CLAUDE.md                  # AI coding agent documentation
-├── SUPABASE_CLERK_SETUP.md   # Integration setup guide
-└── components.json            # shadcn/ui configuration
+src/
+├── app/                    # Next.js App Router pages
+│   ├── (app)/              # Protected routes
+│   │   ├── dashboard/      # Main dashboard
+│   │   └── history/        # Generation history
+│   ├── (auth)/             # Public auth routes
+│   │   ├── sign-in/
+│   │   └── sign-up/
+│   └── api/                # API routes
+│       ├── generate/
+│       ├── status/
+│       └── webhooks/
+├── components/             # React components
+│   ├── features/           # Feature-specific components
+│   ├── shared/             # Shared components
+│   └── ui/                 # UI components (shadcn)
+└── lib/                    # Utility functions and types
 ```
 
-## Database Integration
+## Learn More
 
-This starter includes modern Clerk + Supabase integration:
+To learn more about the technologies used in this project:
 
-- **Third-party auth** (not deprecated JWT templates)
-- **Row Level Security** policies using `auth.jwt() ->> 'sub'` for Clerk user IDs
-- **Example migrations** with various RLS patterns (user-owned, public/private, collaboration)
-- **Server-side client** with automatic Clerk token handling
-
-## AI Coding Agent Integration
-
-This starter is optimized for AI coding agents:
-
-- **`CLAUDE.md`** - Comprehensive project context and patterns
-- **Setup guides** with detailed integration steps
-- **Example migrations** with RLS policy templates
-- **Clear file structure** and naming conventions
-- **TypeScript integration** with proper type definitions
-
-## Documentation Setup
-
-To implement the generated documentation from CodeGuide:
-
-1. Create a `documentation` folder in the root directory:
-   ```bash
-   mkdir documentation
-   ```
-
-2. Place all generated markdown files from CodeGuide in this directory:
-   ```bash
-   # Example structure
-   documentation/
-   ├── project_requirements_document.md             
-   ├── app_flow_document.md
-   ├── frontend_guideline_document.md
-   └── backend_structure_document.md
-   ```
-
-3. These documentation files will be automatically tracked by git and can be used as a reference for your project's features and implementation details.
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Clerk Documentation](https://clerk.com/docs)
+- [Supabase Documentation](https://supabase.com/docs)
+- [shadcn/ui Documentation](https://ui.shadcn.com/docs)
 
 ## Contributing
 
