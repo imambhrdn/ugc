@@ -18,7 +18,7 @@ export default function Home() {
         <div className="container flex h-16 items-center justify-between px-4">
           <div className="flex items-center gap-8">
             <Link href="/" className="text-xl font-bold">
-              AI Generator
+              AI UGC Generator
             </Link>
             <nav className="hidden md:flex items-center gap-6 text-sm">
               <Link href="/dashboard" className="font-medium">
@@ -62,15 +62,15 @@ export default function Home() {
         <div className="max-w-3xl mx-auto">
           <Badge variant="outline" className="mb-6">
             <Sparkles className="w-3 h-3 mr-1" />
-            AI Content Generator
+            AI UGC Generator
           </Badge>
 
           <h1 className="text-4xl sm:text-5xl font-bold mb-6">
-            Generate Content with AI
+            Create UGC Content with AI
           </h1>
 
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-            Create high-quality content using advanced AI technology. Perfect for writers, marketers, and content creators.
+            Transform your ideas into stunning user-generated content using advanced AI technology. Perfect for creators, marketers, and content producers.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
@@ -99,9 +99,9 @@ export default function Home() {
       {/* Features Section */}
       <section className="container mx-auto px-4 sm:px-6 py-8 max-w-5xl">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Powerful AI Features</h2>
+          <h2 className="text-3xl font-bold mb-4">Powerful UGC Features</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Generate high-quality content with our advanced AI-powered platform designed for creators and professionals.
+            Create stunning user-generated content with our advanced AI-powered platform designed for creators and professionals.
           </p>
         </div>
 

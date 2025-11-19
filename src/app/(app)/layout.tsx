@@ -26,7 +26,7 @@ export default function AppLayout({
         <div className="container flex h-16 items-center justify-between px-4">
           <div className="flex items-center gap-8">
             <Link href="/" className="text-xl font-bold">
-              AI Generator
+              AI UGC Generator
             </Link>
             <nav className="hidden md:flex items-center gap-6 text-sm">
               <Link href="/dashboard" className="font-medium">

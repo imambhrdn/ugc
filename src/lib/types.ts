@@ -1,6 +1,6 @@
 // Type definitions for the application
 
-export type GenerationType = 'text_to_prompt' | 'image' | 'video';
+export type GenerationType = 'text_to_prompt' | 'image' | 'video' | 'image_free';
 
 export type JobStatus = 'pending' | 'processing' | 'completed' | 'failed';
 
