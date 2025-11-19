@@ -80,7 +80,7 @@
     "@eslint/eslintrc": "^3",
     "@lhci/cli": "^0.12.0",
     "@next/bundle-analyzer": "^15.5.4",
-    "@size-limit/preset-next-lib": "^11.1.4",
+    "@size-limit/next": "^11.1.4",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19.2.4",
