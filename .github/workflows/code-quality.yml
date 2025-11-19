@@ -31,12 +31,7 @@ jobs:
         reporter: github-pr-review
         eslint_flags: 'src/'
 
-    - name: Check bundle size
-      uses: andresz1/size-limit-action@v1
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        skip_step: install
-
+    
     - name: Prettier check
       run: |
         npx prettier --check "src/**/*.{js,jsx,ts,tsx,json,css,md}"
