@@ -79,7 +79,7 @@ export const AVAILABLE_MODELS = {
  */
 export async function generateMultipleImages(
   prompt: string,
-  models: PollinationsModel[] = ['flux', 'nanobanana']
+  models: PollinationsModel[] = ['flux', 'stability-ai']
 ): Promise<FreeImageResponse[]> {
   const promises = models.map(model =>
     generateFreeImage({ prompt, model })
